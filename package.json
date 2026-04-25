@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "electron:start": "concurrently \"vite\" \"wait-on tcp:5173 && electron .\"",
-    "build:electron": "vite build && electron-builder --win"
+    "build:electron": "vite build && electron-builder --win",
+    "build:native": "node-gyp rebuild"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",
@@ -42,8 +43,14 @@
     "directories": {
       "output": "release"
     },
+    "mac": {
+      "target": "dmg"
+    },
     "win": {
       "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
     },
     "files": [
       "dist/**/*",
